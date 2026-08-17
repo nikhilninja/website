@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ddacs",
+  "info": {
+    "singularName": "ddac",
+    "pluralName": "ddacs",
+    "displayName": "DDAC"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "DDAC": {
+      "type": "string",
+      "default": "DDAC"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "badge": "About Us",
+    "title_before": "Our Story of ",
+    "title_accent": "Healing",
+    "subtitle": "Dedicated to transforming lives through compassionate care and evidence-based treatment since our founding."
+  },
+  "mission": "To provide world-class rehabilitation services that empower individuals to overcome addiction and reclaim their lives, through personalized treatment plans, compassionate care, and a holistic approach to recovery.",
+  "vision": "To be the leading rehabilitation centre in Eastern India, recognized for our commitment to excellence, innovation in treatment, and the lasting positive impact we make on individuals, families, and communities.",
+  "values": [
+    { "icon": "💚", "title": "Compassion", "desc": "We treat every individual with empathy, dignity, and respect throughout their recovery journey." },
+    { "icon": "🏆", "title": "Excellence", "desc": "Our commitment to the highest standards of care drives everything we do — from treatment to facilities." },
+    { "icon": "🤝", "title": "Integrity", "desc": "Transparency and honesty form the foundation of our relationships with patients and families." },
+    { "icon": "🌱", "title": "Holistic Care", "desc": "We address the complete person — body, mind, and spirit — for lasting transformation." }
+  ],
+  "team": [
+    { "name": "Dr. Rahul Sen", "role": "Medical Director", "emoji": "👨‍⚕️", "image": null },
+    { "name": "Dr. Anita Sharma", "role": "Chief Psychiatrist", "emoji": "👩‍⚕️", "image": null },
+    { "name": "Vikram Patel", "role": "Lead Counselor", "emoji": "🧑‍💼", "image": null },
+    { "name": "Meera Das", "role": "Wellness Coordinator", "emoji": "🧘‍♀️", "image": null }
+  ]
+}

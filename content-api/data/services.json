@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Addiction Treatment",
+    "description": "Comprehensive treatment programs for substance abuse, behavioral addictions, and co-occurring disorders. Our evidence-based approach combines medical intervention with psychological support.",
+    "icon": "🌿",
+    "features": "Individual Assessment, Custom Treatment Plans, 12-Step Program",
+    "order": 1
+  },
+  {
+    "id": 2,
+    "title": "Medical Detoxification",
+    "description": "Safe, medically supervised detoxification in a comfortable environment. Our medical team monitors patients 24/7 to manage withdrawal symptoms effectively.",
+    "icon": "💧",
+    "features": "24/7 Medical Monitoring, Medication-Assisted Treatment, Comfortable Environment",
+    "order": 2
+  },
+  {
+    "id": 3,
+    "title": "Psychological Counseling",
+    "description": "Individual and group counseling sessions with experienced psychologists. We use CBT, DBT, and motivational interviewing techniques.",
+    "icon": "🧠",
+    "features": "Cognitive Behavioral Therapy, Group Sessions, One-on-One Counseling",
+    "order": 3
+  },
+  {
+    "id": 4,
+    "title": "Family Therapy",
+    "description": "Rebuilding relationships through guided family therapy sessions. We help families understand addiction and develop healthy communication patterns.",
+    "icon": "👨‍👩‍👧",
+    "features": "Family Education, Joint Sessions, Communication Skills",
+    "order": 4
+  },
+  {
+    "id": 5,
+    "title": "Aftercare & Relapse Prevention",
+    "description": "Continuing support after treatment completion. Our aftercare program includes regular check-ins, support groups, and crisis intervention.",
+    "icon": "🤝",
+    "features": "Alumni Network, Follow-Up Sessions, Crisis Support Line",
+    "order": 5
+  },
+  {
+    "id": 6,
+    "title": "Yoga & Wellness",
+    "description": "Holistic wellness programs including yoga, meditation, fitness training, and nutritional guidance for complete mind-body-spirit healing.",
+    "icon": "🧘",
+    "features": "Daily Yoga Classes, Meditation Practice, Nutrition Planning",
+    "order": 6
+  },
+  {
+    "id": 7,
+    "title": "Psychiatric Evaluation",
+    "description": "Comprehensive psychiatric assessments to identify and treat co-occurring mental health conditions alongside addiction treatment.",
+    "icon": "🏥",
+    "features": "Dual Diagnosis, Medication Management, Mental Health Screening",
+    "order": 7
+  },
+  {
+    "id": 8,
+    "title": "Life Skills Training",
+    "description": "Equipping patients with essential life skills including vocational training, financial management, and social reintegration support.",
+    "icon": "📚",
+    "features": "Vocational Training, Social Skills, Career Guidance",
+    "order": 8
+  }
+]

@@ -1,0 +1,114 @@
+/* ── Page Hero (Reusable for inner pages) ─── */
+.page-hero {
+  padding: calc(var(--nav-height) + var(--space-4xl)) 0 var(--space-4xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(42, 166, 145, 0.12) 0%, transparent 60%),
+    var(--color-bg-secondary);
+  z-index: 0;
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero__badge {
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--space-lg);
+}
+
+.text-accent {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-hero p {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* ── About: Mission Grid ──────────────────── */
+.about__mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+.about__mission-card {
+  text-align: center;
+  padding: var(--space-3xl);
+}
+
+.about__mission-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-xl);
+}
+
+.about__mission-card h3 {
+  margin-bottom: var(--space-lg);
+  color: var(--color-accent);
+}
+
+/* ── Value Cards ──────────────────────────── */
+.value-card {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.value-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.value-card h4 {
+  margin-bottom: var(--space-md);
+}
+
+/* ── Team Cards ───────────────────────────── */
+.team-card {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.team-card__avatar {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.team-card h4 {
+  margin-bottom: var(--space-xs);
+}
+
+.team-card__role {
+  font-family: var(--font-accent);
+  color: var(--color-accent) !important;
+  font-size: 0.95rem !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about__mission-grid {
+    grid-template-columns: 1fr;
+  }
+}

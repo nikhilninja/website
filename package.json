@@ -1,0 +1,27 @@
+{
+  "name": "sarani-website",
+  "version": "1.0.0",
+  "description": "Sarani Rehabilitation & Wellness Website with MediaMTX CCTV Integration",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "dev": "node scripts/start.js",
+    "mediamtx": "node scripts/run-mediamtx.js",
+    "tunnel": "node scripts/tunnel.js",
+    "tunnel:quick": "node scripts/tunnel.js --quick",
+    "tunnel:login": "node scripts/tunnel.js --login",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:api": "cd content-api && npm run dev",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "sarani",
+    "rehabilitation",
+    "mediamtx",
+    "cctv",
+    "webrtc"
+  ],
+  "author": "Sarani Wellness",
+  "license": "ISC"
+}

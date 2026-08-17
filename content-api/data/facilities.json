@@ -1,0 +1,11 @@
+[
+  { "id": 1, "icon": "🛏️", "title": "Premium Accommodation", "desc": "Spacious, well-furnished rooms with modern amenities, private bathrooms, and serene views of our gardens. Designed for comfort and recovery.", "image": null },
+  { "id": 2, "icon": "🍽️", "title": "Nutritious Dining", "desc": "Our in-house kitchen prepares balanced, nutritious meals tailored to individual dietary needs. Fresh ingredients sourced locally.", "image": null },
+  { "id": 3, "icon": "🧘", "title": "Yoga & Meditation Hall", "desc": "A dedicated space for yoga, meditation, and mindfulness practices. Professionally guided sessions every morning and evening.", "image": null },
+  { "id": 4, "icon": "🏋️", "title": "Fitness Center", "desc": "Modern gym equipment for physical rehabilitation and fitness. Supervised exercise programs designed for recovery.", "image": null },
+  { "id": 5, "icon": "🌿", "title": "Healing Gardens", "desc": "Beautifully landscaped gardens and walking paths for reflection, relaxation, and nature therapy.", "image": null },
+  { "id": 6, "icon": "🛋️", "title": "Therapy Rooms", "desc": "Private, comfortable therapy rooms for individual counseling, group sessions, and family meetings.", "image": null },
+  { "id": 7, "icon": "📚", "title": "Library & Learning Center", "desc": "A quiet space for reading, self-study, and personal development. Curated collection of recovery literature.", "image": null },
+  { "id": 8, "icon": "🎨", "title": "Art & Music Room", "desc": "Creative therapy spaces for art therapy, music therapy, and other expressive therapeutic activities.", "image": null },
+  { "id": 9, "icon": "🏊", "title": "Recreation Area", "desc": "Indoor games, outdoor sports, and recreational activities to support holistic healing and social reintegration.", "image": null }
+]

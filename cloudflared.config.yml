@@ -1,0 +1,29 @@
+# Cloudflare Tunnel Configuration for Sarani Rehabilitation & CCTV Streaming
+# 
+# Step 1: Run 'cloudflared tunnel login'
+# Step 2: Run 'cloudflared tunnel create sarani-website'
+# Step 3: Replace <YOUR-TUNNEL-ID> below with the generated UUID
+# Step 4: Run 'npm run tunnel' or 'start-tunnel.bat'
+
+tunnel: <YOUR-TUNNEL-ID>
+credentials-file: C:\Users\subha\.cloudflared\<YOUR-TUNNEL-ID>.json
+
+ingress:
+  # 1. Main Website Frontend (Vite React)
+  - hostname: www.saranirehab.com
+    service: http://localhost:5173
+
+  # 2. Sarani Content API & CMS Backend
+  - hostname: api.saranirehab.com
+    service: http://localhost:3001
+
+  # 3. MediaMTX WebRTC Stream Server (Live Feed)
+  - hostname: cctv.saranirehab.com
+    service: http://localhost:8889
+
+  # 4. MediaMTX HLS Stream Server (Mobile Fallback)
+  - hostname: hls.saranirehab.com
+    service: http://localhost:8888
+
+  # Catch-all 404 rule (required by Cloudflare)
+  - service: http_status:404

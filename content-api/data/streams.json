@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Camera 01 - Main Entrance",
+    "stream_path": "camera_01",
+    "category": "outdoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
+  },
+  {
+    "id": 2,
+    "name": "Camera 02 - Garden & Courtyard",
+    "stream_path": "camera_2",
+    "category": "outdoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
+  },
+  {
+    "id": 3,
+    "name": "Camera 03 - Therapy Wing",
+    "stream_path": "camera_3",
+    "category": "clinical",
+    "is_active": true,
+    "resolution": "1080p 30fps"
+  },
+  {
+    "id": 4,
+    "name": "Camera 04 - Recreation & Lounge",
+    "stream_path": "camera_4",
+    "category": "indoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
+  },
+  {
+    "id": 5,
+    "name": "Camera 05 - Dining & Wellness",
+    "stream_path": "camera_5",
+    "category": "indoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
+  }
+]

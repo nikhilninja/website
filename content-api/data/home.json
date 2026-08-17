@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "badge": "Centre for Excellence",
+    "title_before": "Where ",
+    "title_accent": "Care",
+    "title_after": " Blossoms",
+    "subtitle": "Your Path to Recovery Awaits. Sarani Rehabilitation & Wellness Centre is the perfect place to restart life — find hope, healing, and a brighter future.",
+    "cta_primary": "Begin Your Journey",
+    "cta_secondary": "Learn More"
+  },
+  "welcome": {
+    "subtitle": "Welcome To Sarani",
+    "title": "A Place of Hope, Healing & New Beginnings",
+    "description": "Sarani's Rehabilitation & Wellness Centre is the perfect place to Restart Life — a place where you can find hope, healing and a brighter future. We aim to transform lives impaired and impacted by drug and alcohol abuse or any other kind of addiction.",
+    "features": [
+      "Personalized treatment plans tailored to your unique needs",
+      "Multidisciplinary care combining medical and psychological counseling",
+      "Luxurious facility with serene, healing environment",
+      "24/7 professional support and monitoring"
+    ],
+    "image": null
+  },
+  "stats": [
+    { "value": "500+", "label": "Lives Transformed" },
+    { "value": "15+", "label": "Years of Excellence" },
+    { "value": "50+", "label": "Expert Staff" },
+    { "value": "98%", "label": "Recovery Rate" }
+  ],
+  "services_section": {
+    "subtitle": "What We Offer",
+    "title": "Our Services",
+    "description": "Comprehensive care designed to address every aspect of recovery — body, mind, and spirit."
+  },
+  "testimonials_section": {
+    "subtitle": "Voices of Recovery",
+    "title": "What Our Families Say"
+  },
+  "cta": {
+    "title": "Ready to Start Your Recovery Journey?",
+    "description": "Take the first step towards a healthier, happier life. Our compassionate team is here to guide you every step of the way.",
+    "cta_primary": "Get In Touch",
+    "cta_secondary": "Call Now",
+    "phone": "+917001657578"
+  }
+}

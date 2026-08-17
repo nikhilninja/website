@@ -1,0 +1,14 @@
+[
+  { "id": 1, "title": "Healing Gardens", "category": "Facility", "emoji": "🌿", "image": null },
+  { "id": 2, "title": "Therapy Room", "category": "Facility", "emoji": "🛋️", "image": null },
+  { "id": 3, "title": "Yoga Session", "category": "Activities", "emoji": "🧘", "image": null },
+  { "id": 4, "title": "Dining Area", "category": "Facility", "emoji": "🍽️", "image": null },
+  { "id": 5, "title": "Group Therapy", "category": "Activities", "emoji": "👥", "image": null },
+  { "id": 6, "title": "Meditation Space", "category": "Wellness", "emoji": "🕯️", "image": null },
+  { "id": 7, "title": "Patient Room", "category": "Accommodation", "emoji": "🛏️", "image": null },
+  { "id": 8, "title": "Fitness Center", "category": "Wellness", "emoji": "🏋️", "image": null },
+  { "id": 9, "title": "Art Therapy", "category": "Activities", "emoji": "🎨", "image": null },
+  { "id": 10, "title": "Garden Walk", "category": "Facility", "emoji": "🌸", "image": null },
+  { "id": 11, "title": "Music Therapy", "category": "Activities", "emoji": "🎵", "image": null },
+  { "id": 12, "title": "Swimming Pool", "category": "Wellness", "emoji": "🏊", "image": null }
+]

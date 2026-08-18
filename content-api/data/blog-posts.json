@@ -1,8 +1,62 @@
 [
-  { "id": 1, "title": "Understanding Addiction: A Comprehensive Guide", "excerpt": "Addiction is a complex brain disorder that affects millions worldwide. Learn about the science behind addiction and how modern treatment approaches are helping people recover.", "slug": "understanding-addiction", "published_at": "2025-07-15", "author": "Dr. Rahul Sen", "category": "Education", "content": "" },
-  { "id": 2, "title": "The Role of Family in Recovery", "excerpt": "Family support plays a crucial role in the recovery process. Discover how families can effectively support their loved ones while maintaining their own well-being.", "slug": "family-in-recovery", "published_at": "2025-07-01", "author": "Dr. Anita Sharma", "category": "Family", "content": "" },
-  { "id": 3, "title": "Mindfulness and Meditation in Addiction Recovery", "excerpt": "Mindfulness practices have shown remarkable results in addiction recovery. Explore how meditation can help manage cravings and build emotional resilience.", "slug": "mindfulness-recovery", "published_at": "2025-06-20", "author": "Meera Das", "category": "Wellness", "content": "" },
-  { "id": 4, "title": "Breaking the Stigma: Mental Health and Addiction", "excerpt": "Mental health stigma remains one of the biggest barriers to seeking treatment. Learn how we can change the conversation around addiction and mental health.", "slug": "breaking-stigma", "published_at": "2025-06-10", "author": "Vikram Patel", "category": "Awareness", "content": "" },
-  { "id": 5, "title": "Nutrition and Recovery: Healing Your Body", "excerpt": "Proper nutrition is essential for recovery. Learn about the foods and dietary habits that support brain healing and overall physical restoration.", "slug": "nutrition-recovery", "published_at": "2025-05-25", "author": "Dr. Rahul Sen", "category": "Wellness", "content": "" },
-  { "id": 6, "title": "Life After Rehab: Building a New Normal", "excerpt": "Transitioning from rehabilitation to everyday life can be challenging. Here are practical strategies for maintaining sobriety and building a fulfilling life.", "slug": "life-after-rehab", "published_at": "2025-05-10", "author": "Vikram Patel", "category": "Recovery", "content": "" }
+  {
+    "id": 1,
+    "title": "Understanding Addiction: A Comprehensive Guide",
+    "slug": "understanding-addiction",
+    "excerpt": "Addiction is a complex brain disorder that affects millions worldwide. Learn about the science behind addiction and how modern treatment approaches are helping people recover.",
+    "category": "Education",
+    "author": "Dr. Rahul Sen",
+    "published_at": "2025-07-15",
+    "content": "Addiction is not a moral failing, a lack of willpower, or a sign of weakness. Modern medical and psychological science conclusively defines addiction as a chronic, relapsing brain disease characterized by compulsive substance seeking and use despite harmful consequences.\n\n### The Neurobiology of Addiction\nWhen a person consumes substances such as alcohol, opioids, or stimulants, the brain releases surges of dopamine into the nucleus accumbens—the primary reward center. Over time, continuous stimulation alters neural pathways, reducing natural dopamine receptor sensitivity. The individual develops tolerance and requires higher quantities simply to feel normal.\n\n### Core Stages of the Addiction Cycle\n1. **Binge & Intoxication:** Heightened dopamine release and euphoria.\n2. **Withdrawal & Negative Affect:** Emotional and physical distress when the substance leaves the system.\n3. **Preoccupation & Anticipation:** Intense cravings and obsession with obtaining the next dose.\n\n### Evidence-Based Treatment Pathways\nModern addiction treatment relies on integrated medical and psychological modalities:\n- **Medically Supervised Detoxification:** Safe management of physical withdrawal symptoms.\n- **Cognitive Behavioral Therapy (CBT):** Identifying thought triggers and developing coping strategies.\n- **Holistic Wellness:** Integrating mindfulness, physical fitness, and balanced nutrition.\n\nRecovery is a continuous process of rebuilding identity, resilience, and personal purpose."
+  },
+  {
+    "id": 2,
+    "title": "The Role of Family in Recovery",
+    "slug": "family-in-recovery",
+    "excerpt": "Family support plays a crucial role in the recovery process. Discover how families can effectively support their loved ones while maintaining their own well-being.",
+    "category": "Family",
+    "author": "Dr. Anita Sharma",
+    "published_at": "2025-07-01",
+    "content": "Addiction rarely affects just one individual; it is widely recognized in clinical psychiatry as a 'family disease'. Loved ones often experience immense emotional distress, anxiety, broken trust, and burnout.\n\n### Understanding the Difference Between Helping and Enabling\nOne of the most vital lessons for families is distinguishing compassionate support from enabling behaviors:\n- **Enabling:** Covering up mistakes, paying debts caused by substance use, or making excuses for harmful behavior.\n- **Support:** Encouraging accountability, attending counseling sessions together, and setting clear, loving boundaries.\n\n### Establishing Healthy Boundaries\nSetting boundaries is not punitive; it protects both the family and the recovering individual. Clear expectations regarding household safety, emotional honesty, and sobriety guidelines provide a structured framework where healing can happen.\n\n### The Power of Family Therapy at Sarani\nOur guided family therapy sessions provide a safe environment to process resentment, rebuild broken trust, and develop new communication skills that sustain long-term sobriety."
+  },
+  {
+    "id": 3,
+    "title": "Mindfulness and Meditation in Addiction Recovery",
+    "slug": "mindfulness-recovery",
+    "excerpt": "Mindfulness practices have shown remarkable results in addiction recovery. Explore how meditation can help manage cravings and build emotional resilience.",
+    "category": "Wellness",
+    "author": "Meera Das",
+    "published_at": "2025-06-20",
+    "content": "In the chaotic whirlwind of early recovery, emotions can feel overwhelming. Mindfulness—the practice of maintaining moment-by-moment awareness of our thoughts, feelings, bodily sensations, and surrounding environment—serves as an anchor.\n\n### The Science of Urge Surfing\nCravings operate like ocean waves: they build in intensity, reach a peak, and naturally subside. 'Urge surfing' is a mindfulness technique where individuals observe the sensation of a craving without judgment or reaction, recognizing that cravings are temporary physiological events.\n\n### Daily Mindfulness Routines at Sarani\n- **Mindful Breathing (Pranayama):** Calms the nervous system and lowers cortisol.\n- **Body Scan Meditation:** Reconnects patients with physical sensations often numbed by substance use.\n- **Mindful Walking in Nature:** Engages the senses amidst our landscaped campus gardens.\n\nBy fostering self-compassion and emotional regulation, mindfulness empowers patients to respond thoughtfully rather than react impulsively."
+  },
+  {
+    "id": 4,
+    "title": "Breaking the Stigma: Mental Health and Addiction",
+    "slug": "breaking-stigma",
+    "excerpt": "Mental health stigma remains one of the biggest barriers to seeking treatment. Learn how we can change the conversation around addiction and mental health.",
+    "category": "Awareness",
+    "author": "Vikram Patel",
+    "published_at": "2025-06-10",
+    "content": "Stigma is one of the most destructive obstacles on the road to recovery. Societal misconceptions often label individuals struggling with substance use as irresponsible or criminal, leading to deep shame and reluctance to seek medical help.\n\n### The Reality of Dual Diagnosis\nOver 50% of individuals facing substance use disorders also experience co-occurring mental health conditions, such as depression, generalized anxiety disorder, PTSD, or bipolar disorder. Substances are frequently used as self-medication to cope with unaddressed emotional pain.\n\n### How We Can Break the Stigma\n- **Change the Language:** Use person-first language (e.g., 'a person with substance use disorder' instead of 'addict').\n- **Educate Communities:** Share scientific knowledge about brain chemistry and genetic predispositions.\n- **Celebrate Recovery:** Share stories of hope, healing, and transformation to prove that recovery is possible for everyone."
+  },
+  {
+    "id": 5,
+    "title": "Nutrition and Recovery: Healing Your Body",
+    "slug": "nutrition-recovery",
+    "excerpt": "Proper nutrition is essential for recovery. Learn about the foods and dietary habits that support brain healing and overall physical restoration.",
+    "category": "Wellness",
+    "author": "Dr. Rahul Sen",
+    "published_at": "2025-05-25",
+    "content": "Prolonged substance abuse severely depletes the human body of vital nutrients, vitamins, and minerals. Chronic alcohol intake, for instance, leads to thiamine (Vitamin B1) deficiencies, while stimulants can disrupt gastrointestinal balance and cause severe malnutrition.\n\n### Nutritional Pillars of Physical Healing\n1. **Complex Carbohydrates:** Stabilize blood sugar and reduce mood swings and cravings.\n2. **Quality Proteins & Amino Acids:** Provide the building blocks for key neurotransmitters like serotonin and dopamine.\n3. **Omega-3 Fatty Acids:** Support brain cellular repair and reduce inflammation.\n4. **Hydration & Herbal Infusions:** Flush metabolic toxins and maintain energy levels.\n\nAt Sarani, our in-house culinary and nutrition team designs personalized meal plans using fresh, locally sourced ingredients to nurture mind, body, and spirit."
+  },
+  {
+    "id": 6,
+    "title": "Life After Rehab: Building a New Normal",
+    "slug": "life-after-rehab",
+    "excerpt": "Transitioning from rehabilitation to everyday life can be challenging. Here are practical strategies for maintaining sobriety and building a fulfilling life.",
+    "category": "Recovery",
+    "author": "Vikram Patel",
+    "published_at": "2025-05-10",
+    "content": "Completing residential treatment is a monumental milestone, but true long-term recovery is built in the daily choices that follow. Returning to everyday life requires intentionality, patience, and a robust support structure.\n\n### Keys to a Successful Post-Rehab Transition\n- **Establish a Daily Routine:** Structure wake times, exercise, work, and relaxation to eliminate idle trigger times.\n- **Build a Sober Social Circle:** Engage with support groups, alumni meetings, and friends who respect your commitment to wellness.\n- **Identify High-Risk Situations:** Develop concrete exit strategies for social events or high-stress situations.\n- **Commit to Ongoing Counseling:** Regular follow-up sessions help navigate early life challenges before they turn into relapses.\n\nSarani's comprehensive aftercare network ensures that no patient ever walks the recovery journey alone."
+  }
 ]

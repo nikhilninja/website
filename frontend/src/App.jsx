@@ -14,6 +14,9 @@ import Contact from './pages/Contact';
 import Live from './pages/Live';
 import Admin from './pages/Admin';
 
+import BlogPost from './pages/BlogPost';
+import NotFound from './pages/NotFound';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -33,6 +36,7 @@ function AppLayout() {
         <ScrollToTop />
         <Routes>
           <Route path="/admin" element={<Admin />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     );
@@ -49,11 +53,13 @@ function AppLayout() {
           <Route path="/services" element={<Services />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/live" element={<Live />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -7,6 +7,8 @@ import {
   addCollectionItem,
   updateCollectionItem,
   deleteCollectionItem,
+  updateContactSubmission,
+  deleteContactSubmission,
   uploadFile,
   getImageUrl,
 } from '../lib/api';
@@ -470,7 +472,14 @@ function AboutPageFields({ content, updateField }) {
       </div>
 
       <div className="admin-card">
-        <h3>💎 Core Values</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h3>💎 Core Values</h3>
+          <button className="admin-btn admin-btn--ghost admin-btn--sm" onClick={() => {
+            updateField('values', [...(content.values || []), { icon: '✨', title: 'New Value', desc: 'Description here' }]);
+          }}>
+            + Add Value
+          </button>
+        </div>
         {(content.values || []).map((v, i) => (
           <div key={i} className="admin-item-editor">
             <div className="admin-form-row">
@@ -499,12 +508,31 @@ function AboutPageFields({ content, updateField }) {
                 updateField('values', values);
               }} rows={2} />
             </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <button
+                type="button"
+                className="admin-btn admin-btn--danger admin-btn--sm"
+                onClick={() => {
+                  const values = content.values.filter((_, idx) => idx !== i);
+                  updateField('values', values);
+                }}
+              >
+                🗑️ Delete Value
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       <div className="admin-card">
-        <h3>👥 Team Members</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h3>👥 Team Members</h3>
+          <button className="admin-btn admin-btn--ghost admin-btn--sm" onClick={() => {
+            updateField('team', [...(content.team || []), { name: '', role: '', emoji: '👤', image: null }]);
+          }}>
+            + Add Team Member
+          </button>
+        </div>
         {(content.team || []).map((m, i) => (
           <div key={i} className="admin-item-editor">
             <div className="admin-form-row">
@@ -533,13 +561,20 @@ function AboutPageFields({ content, updateField }) {
                 updateField('team', team);
               }} />
             </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <button
+                type="button"
+                className="admin-btn admin-btn--danger admin-btn--sm"
+                onClick={() => {
+                  const team = content.team.filter((_, idx) => idx !== i);
+                  updateField('team', team);
+                }}
+              >
+                🗑️ Delete Member
+              </button>
+            </div>
           </div>
         ))}
-        <button className="admin-btn admin-btn--ghost" onClick={() => {
-          updateField('team', [...(content.team || []), { name: '', role: '', emoji: '👤', image: null }]);
-        }}>
-          + Add Team Member
-        </button>
       </div>
     </>
   );
@@ -800,16 +835,34 @@ function CollectionEditor({ name, fields, showToast }) {
 /* ══════════════════════════════════════════════════════════════
    Contact Submissions Viewer
    ══════════════════════════════════════════════════════════════ */
-function ContactSubmissions({ showToast: _showToast }) {
+function ContactSubmissions({ showToast }) {
   const [submissions, setSubmissions] = useState([]);
 
+  const loadSubmissions = async () => {
+    const data = await fetchCollection('contact-submissions');
+    if (data?.data) setSubmissions([...data.data].reverse());
+  };
+
   useEffect(() => {
-    async function load() {
-      const data = await fetchCollection('contact-submissions');
-      if (data?.data) setSubmissions(data.data.reverse());
-    }
-    load();
+    loadSubmissions();
   }, []);
+
+  const handleToggleRead = async (sub) => {
+    const updated = await updateContactSubmission(sub.id, { read: !sub.read });
+    if (updated.success) {
+      showToast(sub.read ? 'Marked as unread' : 'Marked as read');
+      loadSubmissions();
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm('Delete this message?')) return;
+    const res = await deleteContactSubmission(id);
+    if (res.success) {
+      showToast('Message deleted');
+      loadSubmissions();
+    }
+  };
 
   return (
     <div>
@@ -829,7 +882,14 @@ function ContactSubmissions({ showToast: _showToast }) {
         submissions.map(sub => (
           <div key={sub.id} className={`admin-submission ${!sub.read ? 'admin-submission--unread' : ''}`}>
             <div className="admin-submission__header">
-              <span className="admin-submission__name">{sub.name}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="admin-submission__name">{sub.name}</span>
+                {!sub.read && (
+                  <span style={{ fontSize: '0.75rem', background: '#2aa691', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 }}>
+                    NEW
+                  </span>
+                )}
+              </div>
               <span className="admin-submission__date">
                 {sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString('en-IN', {
                   year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
@@ -838,9 +898,27 @@ function ContactSubmissions({ showToast: _showToast }) {
             </div>
             {sub.subject && <div className="admin-submission__subject">{sub.subject}</div>}
             <div className="admin-submission__message">{sub.message}</div>
-            <div className="admin-submission__meta">
-              {sub.email && <span>📧 {sub.email}</span>}
-              {sub.phone && <span>📞 {sub.phone}</span>}
+            <div className="admin-submission__meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                {sub.email && <span>📧 {sub.email}</span>}
+                {sub.phone && <span>📞 {sub.phone}</span>}
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--ghost admin-btn--sm"
+                  onClick={() => handleToggleRead(sub)}
+                >
+                  {sub.read ? 'Mark Unread' : '✓ Mark Read'}
+                </button>
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--danger admin-btn--sm"
+                  onClick={() => handleDelete(sub.id)}
+                >
+                  🗑️ Delete
+                </button>
+              </div>
             </div>
           </div>
         ))

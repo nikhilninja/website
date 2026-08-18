@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchCollection } from '../lib/api';
 import './Facilities.css';
 
@@ -60,8 +61,8 @@ export default function Facilities() {
             <h2>Want to See Our Facility?</h2>
             <p>Schedule a visit to our centre or browse our gallery for a virtual tour of our spaces.</p>
             <div className="cta-card__actions">
-              <a href="/gallery" className="btn btn-accent">View Gallery</a>
-              <a href="/contact" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>Schedule Visit</a>
+              <Link to="/gallery" className="btn btn-accent">View Gallery</Link>
+              <Link to="/contact" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>Schedule Visit</Link>
             </div>
           </div>
         </div>

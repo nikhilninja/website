@@ -21,15 +21,33 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // ── File Helpers ───────────────────────────────────────────
 const DATA_DIR = path.join(__dirname, 'data');
 
+function sanitizeFilename(name) {
+  if (typeof name !== 'string') return 'invalid';
+  return name.replace(/[^a-zA-Z0-9_-]/g, '');
+}
+
 function readJSON(filename) {
-  const filepath = path.join(DATA_DIR, `${filename}.json`);
-  if (!fs.existsSync(filepath)) return null;
-  return JSON.parse(fs.readFileSync(filepath, 'utf-8'));
+  try {
+    const clean = sanitizeFilename(filename);
+    const filepath = path.join(DATA_DIR, `${clean}.json`);
+    if (!fs.existsSync(filepath)) return null;
+    return JSON.parse(fs.readFileSync(filepath, 'utf-8'));
+  } catch (err) {
+    console.error(`Error reading ${filename}.json:`, err);
+    return null;
+  }
 }
 
 function writeJSON(filename, data) {
-  const filepath = path.join(DATA_DIR, `${filename}.json`);
-  fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf-8');
+  try {
+    const clean = sanitizeFilename(filename);
+    const filepath = path.join(DATA_DIR, `${clean}.json`);
+    fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error(`Error writing ${filename}.json:`, err);
+    return false;
+  }
 }
 
 // ── Image Upload ───────────────────────────────────────────
@@ -138,6 +156,29 @@ app.post('/api/contact', (req, res) => {
   submissions.push(newSubmission);
   writeJSON('contact-submissions', submissions);
   res.json({ success: true, data: newSubmission });
+});
+
+// PUT /api/contact/:id  → update contact submission (e.g. mark as read)
+app.put('/api/contact/:id', (req, res) => {
+  const submissions = readJSON('contact-submissions') || [];
+  const id = parseInt(req.params.id);
+  const index = submissions.findIndex(s => s.id === id);
+  if (index === -1) return res.status(404).json({ error: 'Submission not found' });
+
+  submissions[index] = { ...submissions[index], ...req.body, id };
+  writeJSON('contact-submissions', submissions);
+  res.json({ success: true, data: submissions[index] });
+});
+
+// DELETE /api/contact/:id  → delete contact submission
+app.delete('/api/contact/:id', (req, res) => {
+  const submissions = readJSON('contact-submissions') || [];
+  const id = parseInt(req.params.id);
+  const filtered = submissions.filter(s => s.id !== id);
+  if (filtered.length === submissions.length) return res.status(404).json({ error: 'Submission not found' });
+
+  writeJSON('contact-submissions', filtered);
+  res.json({ success: true });
 });
 
 // ── MediaMTX Status Check ─────────────────────────────────

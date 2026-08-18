@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchCollection, checkMediaMtxStatus } from '../lib/api';
 import './Live.css';
 
@@ -484,13 +485,13 @@ export default function Live() {
               <h4>📡 MediaMTX CCTV Architecture</h4>
               <p>
                 Streams are relayed via <strong>MediaMTX (WebRTC low-latency relay on port 8889)</strong> directly to the browser.
-                RTSP sources are configurable inside <a href="/admin" className="text-accent">/admin</a> or in <code>mediamtx.yml</code>.
+                RTSP sources are configurable inside <Link to="/admin" className="text-accent">/admin</Link> or in <code>mediamtx.yml</code>.
               </p>
             </div>
             <div className="live__footer-actions">
-              <a href="/admin" className="btn btn-outline btn-sm">
+              <Link to="/admin" className="btn btn-outline btn-sm">
                 ⚙ Configure Stream Sources
-              </a>
+              </Link>
               <button className="btn btn-primary btn-sm" onClick={() => window.location.reload()}>
                 🔄 Refresh Feeds
               </button>

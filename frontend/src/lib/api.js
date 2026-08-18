@@ -118,6 +118,32 @@ export async function submitContactForm(formData) {
 }
 
 /**
+ * Update contact submission (e.g. mark read)
+ */
+export async function updateContactSubmission(id, data) {
+  try {
+    const response = await api.put(`/contact/${id}`, data);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating contact submission ${id}:`, error);
+    return { success: false };
+  }
+}
+
+/**
+ * Delete contact submission
+ */
+export async function deleteContactSubmission(id) {
+  try {
+    const response = await api.delete(`/contact/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting contact submission ${id}:`, error);
+    return { success: false };
+  }
+}
+
+/**
  * Admin login
  */
 export async function adminLogin(password) {

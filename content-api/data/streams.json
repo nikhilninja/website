@@ -46,5 +46,13 @@
     "category": "indoor",
     "is_active": true,
     "resolution": "1080p 30fps"
+  },
+  {
+    "id": 7,
+    "name": "Camera 07",
+    "stream_path": "camera_7",
+    "category": "indoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
   }
 ]

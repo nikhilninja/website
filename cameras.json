@@ -40,5 +40,12 @@
     "rtspTransport": "automatic",
     "sourceOnDemand": false,
     "record": false
+  },
+  {
+    "name": "camera_7",
+    "source": "rtsp://admin:L21B9885@192.168.31.223:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif",
+    "rtspTransport": "automatic",
+    "sourceOnDemand": false,
+    "record": false
   }
 ]

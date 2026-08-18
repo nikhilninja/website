@@ -11,6 +11,7 @@ const fallbackStreams = [
   { id: 4, name: 'Camera 04 - Recreation & Lounge', stream_path: 'camera_4', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
   { id: 5, name: 'Camera 05 - Dining & Wellness', stream_path: 'camera_5', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
   { id: 6, name: 'Camera 06 - Class / Activity', stream_path: 'camera_6', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
+  { id: 7, name: 'Camera 07', stream_path: 'camera_7', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
 ];
 
 function CCTVOverlay({ cameraName, streamPath, resolution = '1080p 30fps' }) {

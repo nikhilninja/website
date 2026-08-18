@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "name": "Camera 02 - Garden & Courtyard",
+    "name": "Camera 02 - Detoxification room",
     "stream_path": "camera_2",
     "category": "outdoor",
     "is_active": true,
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "name": "Camera 04 - Recreation & Lounge",
+    "name": "Camera 04 -  Dining & Wellness",
     "stream_path": "camera_4",
     "category": "indoor",
     "is_active": true,
@@ -33,7 +33,7 @@
   },
   {
     "id": 5,
-    "name": "Camera 05 - Dining & Wellness",
+    "name": "Camera 05 - Counseling room",
     "stream_path": "camera_5",
     "category": "indoor",
     "is_active": true,

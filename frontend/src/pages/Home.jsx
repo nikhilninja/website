@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchPageContent, fetchCollection } from '../lib/api';
+import { fetchPageContent, fetchCollection, getImageUrl } from '../lib/api';
 import './Home.css';
 
 /* ── Fallback data when API isn't connected ── */
@@ -165,10 +165,18 @@ export default function Home() {
           <div className="welcome__grid">
             <div className="welcome__image-container">
               <div className="welcome__image-frame">
-                <div className="welcome__image-placeholder">
-                  <div className="welcome__image-icon">🏥</div>
-                  <p>Sarani Rehabilitation Centre</p>
-                </div>
+                {welcome.image ? (
+                  <img
+                    src={getImageUrl(welcome.image)}
+                    alt={welcome.title || 'Sarani Rehabilitation Centre'}
+                    className="welcome__image-img"
+                  />
+                ) : (
+                  <div className="welcome__image-placeholder">
+                    <div className="welcome__image-icon">🏥</div>
+                    <p>Sarani Rehabilitation Centre</p>
+                  </div>
+                )}
               </div>
               <div className="welcome__image-accent"></div>
             </div>

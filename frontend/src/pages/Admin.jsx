@@ -311,14 +311,28 @@ function PageEditor({ page, showToast }) {
         </div>
       </div>
 
-      {page === 'home' && <HomePageFields content={content} updateField={updateField} />}
+      {page === 'home' && <HomePageFields content={content} updateField={updateField} showToast={showToast} />}
       {page === 'about' && <AboutPageFields content={content} updateField={updateField} />}
     </div>
   );
 }
 
 /* ── Home Page Fields ──────────────────────────────────────── */
-function HomePageFields({ content, updateField }) {
+function HomePageFields({ content, updateField, showToast }) {
+  const welcomeImageRef = useRef(null);
+
+  const handleWelcomeImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const result = await uploadFile(file);
+    if (result.url) {
+      updateField('welcome.image', result.url);
+      if (showToast) showToast('Welcome section image uploaded!');
+    } else {
+      if (showToast) showToast('Failed to upload image', 'error');
+    }
+  };
+
   return (
     <>
       <div className="admin-card">
@@ -380,6 +394,51 @@ function HomePageFields({ content, updateField }) {
             value={(content.welcome?.features || []).join('\n')}
             onChange={e => updateField('welcome.features', e.target.value.split('\n').filter(Boolean))}
             rows={5}
+          />
+        </div>
+
+        <div className="admin-form-group">
+          <label>Section Photo (Sarani Rehabilitation Centre Image)</label>
+          {content.welcome?.image && (
+            <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <img
+                src={getImageUrl(content.welcome.image)}
+                alt="Welcome Preview"
+                style={{ width: '200px', height: '140px', objectFit: 'cover', borderRadius: '10px', border: '1px solid rgba(42,166,145,0.3)' }}
+              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--ghost admin-btn--sm"
+                  onClick={() => welcomeImageRef.current?.click()}
+                >
+                  🔄 Change Photo
+                </button>
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--danger admin-btn--sm"
+                  onClick={() => updateField('welcome.image', null)}
+                >
+                  🗑️ Remove Photo (Use Default Icon)
+                </button>
+              </div>
+            </div>
+          )}
+          <div
+            className="admin-upload"
+            onClick={() => welcomeImageRef.current?.click()}
+            style={{ display: content.welcome?.image ? 'none' : 'block' }}
+          >
+            <div className="admin-upload__icon">📷</div>
+            <div className="admin-upload__text">Click to upload photo of Sarani Rehabilitation Centre</div>
+            <div style={{ fontSize: '0.75rem', color: '#7a8ba8', marginTop: '4px' }}>Supports JPG, PNG, WEBP up to 10MB</div>
+          </div>
+          <input
+            ref={welcomeImageRef}
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={handleWelcomeImageUpload}
           />
         </div>
       </div>

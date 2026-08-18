@@ -1,4 +1,4 @@
-n@echo off
+@echo off
 title Cloudflare Tunnel - Sarani Website & CCTV
 echo ===================================================
 echo   Starting Cloudflare Public Tunnel for Sarani

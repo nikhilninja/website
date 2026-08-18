@@ -1,6 +1,6 @@
 # Sarani Rehabilitation & Wellness Website
 
-A complete, self-hosted web application built with **React (Vite)**, **Strapi v5 (Headless CMS)**, **MediaMTX (CCTV Streaming)**, and **Cloudflare Tunnel (Self-Hosting & HTTPS)**.
+A complete, self-hosted web application built with **React (Vite)**, **Custom Content API (Express & JSON DB)**, **MediaMTX (CCTV Streaming)**, and **Cloudflare Tunnel (Self-Hosting & HTTPS)**.
 
 ---
 
@@ -8,65 +8,49 @@ A complete, self-hosted web application built with **React (Vite)**, **Strapi v5
 
 ```
 e:\ANTIGRAVITY\website\
-├── backend/            ← Strapi v5 CMS (Admin Dashboard & REST API)
-│   ├── src/api/        ← Content schemas & controllers
-│   └── database/       ← SQLite database (data.db)
-├── frontend/           ← React + Vite Web Application
+├── content-api/        ← Lightweight Content API & CMS Backend (Port 3001)
+│   ├── data/           ← JSON Content storage (about, blog, services, streams, etc.)
+│   └── uploads/        ← Uploaded media and images
+├── frontend/           ← React + Vite Web Application (Port 5173)
 │   ├── src/
 │   │   ├── components/ ← Navbar (glassmorphism), Footer
-│   │   ├── pages/      ← Home, About, Services, Facilities, Blog, Gallery, FAQ, Contact, Live
-│   │   └── lib/        ← Strapi API client & media helper
+│   │   ├── pages/      ← Home, About, Services, Facilities, Blog, Gallery, FAQ, Contact, Live, Admin
+│   │   └── lib/        ← API client & media helper
+├── cameras.json        ← Camera source definitions
 ├── mediamtx.yml        ← CCTV RTSP-to-WebRTC relay config
 ├── ecosystem.config.js ← PM2 process manager config
+├── start-tunnel.bat    ← Quick Cloudflare HTTPS tunnel launcher
 └── README.md           ← Complete setup & deployment guide
 ```
 
 ---
 
-## 1. Quick Start (Development Mode)
+## 1. Quick Start (All-in-One Launcher)
 
-### Step A: Start Strapi Backend
-Open a terminal window and run:
-```bash
-cd e:\ANTIGRAVITY\website\backend
-npm run develop
-```
-- Admin Dashboard: `http://localhost:1337/admin`
-- On first launch, create your Super Admin account (email & password).
+Launch all services (MediaMTX + Content API + Vite React Frontend) with a single command:
 
-### Step B: Start React Frontend
-Open a second terminal window and run:
 ```bash
-cd e:\ANTIGRAVITY\website\frontend
-npm run dev
+npm start
 ```
-- Website Access: `http://localhost:5173`
+
+### Access Points:
+- ✦ **Website**: `http://localhost:5173`
+- ✦ **Live Feed (CCTV)**: `http://localhost:5173/live` (Password: `sarani2025`)
+- ✦ **Admin Panel**: `http://localhost:5173/admin` (Password: `sarani2025`)
+- ✦ **Content API**: `http://localhost:3001`
+- ✦ **MediaMTX WebRTC**: `http://localhost:8889`
+- ✦ **MediaMTX RTSP**: `rtsp://localhost:8554`
 
 ---
 
-## 2. Strapi Content Management Guide
+## 2. Custom Admin Panel
 
-The React frontend comes with fallback content so it works out-of-the-box. When you add content inside the Strapi Admin Panel (`http://localhost:1337/admin`), the website automatically fetches and displays your live database content.
+Manage all website content directly inside the React web application at `/admin`:
 
-### Setting Public Permissions in Strapi
-To allow your React website to fetch content without API tokens:
-1. Log in to `http://localhost:1337/admin`.
-2. Navigate to **Settings** → **Roles** (under *Users & Permissions plugin*).
-3. Click on **Public**.
-4. Scroll to your Content Types and check **find** and **findOne** for:
-   - `services`, `blog-posts`, `testimonials`, `gallery-images`, `faqs`, `cctv-streams`
-5. Check **create** for `contact-submissions`.
-6. Click **Save**.
-
-### Creating Content Types in Content-Type Builder
-1. Go to **Content-Type Builder** in the Strapi sidebar.
-2. Click **Create new collection type**:
-   - **Service**: `title` (Text), `description` (Rich Text), `icon_emoji` (Text), `order` (Number).
-   - **Blog Post**: `title` (Text), `slug` (UID), `excerpt` (Text), `content` (Rich Text), `author` (Text), `category` (Text), `published_at` (Date).
-   - **Testimonial**: `author_name` (Text), `role` (Text), `quote` (Text), `rating` (Number).
-   - **Gallery Image**: `title` (Text), `category` (Text), `order` (Number), `media` (Media).
-   - **FAQ**: `question` (Text), `answer` (Text), `category` (Text), `order` (Number).
-   - **CCTV Stream**: `name` (Text), `stream_url` (Text - e.g., `entrance`), `is_active` (Boolean), `order` (Number).
+- **Pages**: Edit Home and About page text, hero headlines, badges, and stats.
+- **Collections**: Create, edit, and delete Services, Facilities, Blog Posts, FAQs, Testimonials, and Gallery photos.
+- **CCTV Streams**: Manage active camera stream titles, categories, and stream paths.
+- **Media Uploads**: Directly upload images to the server.
 
 ---
 
@@ -78,17 +62,16 @@ The **Live Feed** page (`/live`) displays live camera feeds and is protected wit
 - Default Password: `sarani2025`
 - Configurable in `frontend/src/pages/Live.jsx` or via environment variable `VITE_LIVE_PASSWORD`.
 
-### Running MediaMTX:
-1. Download MediaMTX for Windows from [github.com/bluenviron/mediamtx](https://github.com/bluenviron/mediamtx/releases).
-2. Place `mediamtx.exe` in `e:\ANTIGRAVITY\website\`.
-3. Edit `mediamtx.yml` to set your camera RTSP URLs:
-   ```yaml
-   paths:
-     entrance:
-       source: rtsp://admin:password@192.168.1.101:554/h264/ch1/main/av_stream
-   ```
-4. Run `mediamtx.exe`.
-5. The streams are relayed via WebRTC on port `8889` for near-zero latency video playback in the browser.
+### Adding / Modifying Cameras:
+Edit `mediamtx.yml` under `paths:` with your camera RTSP addresses:
+```yaml
+paths:
+  camera_01:
+    source: "rtsp://admin:password@192.168.31.33:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    rtspTransport: automatic
+    sourceOnDemand: no
+    record: no
+```
 
 ---
 
@@ -115,14 +98,13 @@ To bind the website and live streams to your personal domain:
 #### Step 1: Login to Cloudflare
 ```powershell
 npm run tunnel:login
-# or: .\cloudflared.exe tunnel login
 ```
 
 #### Step 2: Create Named Tunnel
 ```powershell
 .\cloudflared.exe tunnel create sarani-website
 ```
-Copy the generated Tunnel UUID (e.g. `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`).
+Copy the generated Tunnel UUID.
 
 #### Step 3: Configure Multi-Service Ingress
 Edit `cloudflared.config.yml` in the project root:
@@ -133,12 +115,16 @@ credentials-file: C:\Users\subha\.cloudflared\<YOUR-TUNNEL-ID>.json
 ingress:
   - hostname: www.saranirehab.com
     service: http://localhost:5173
+
   - hostname: api.saranirehab.com
     service: http://localhost:3001
+
   - hostname: cctv.saranirehab.com
     service: http://localhost:8889
+
   - hostname: hls.saranirehab.com
     service: http://localhost:8888
+
   - service: http_status:404
 ```
 
@@ -152,13 +138,11 @@ ingress:
 npm run tunnel
 ```
 
-Your website and live feeds are now accessible globally over HTTPS with automated SSL/TLS protection!
-
 ---
 
 ## 5. 24/7 Production Setup (PM2)
 
-To keep both Strapi and React running in the background automatically:
+To keep all services running in the background automatically:
 
 ```powershell
 npm install -g pm2

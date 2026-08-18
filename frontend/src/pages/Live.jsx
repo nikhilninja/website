@@ -10,6 +10,7 @@ const fallbackStreams = [
   { id: 3, name: 'Camera 03 - Therapy Wing', stream_path: 'camera_3', category: 'clinical', is_active: true, resolution: '1080p 30fps' },
   { id: 4, name: 'Camera 04 - Recreation & Lounge', stream_path: 'camera_4', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
   { id: 5, name: 'Camera 05 - Dining & Wellness', stream_path: 'camera_5', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
+  { id: 6, name: 'Camera 06 - Class / Activity', stream_path: 'camera_6', category: 'indoor', is_active: true, resolution: '1080p 30fps' },
 ];
 
 function CCTVOverlay({ cameraName, streamPath, resolution = '1080p 30fps' }) {
@@ -18,7 +19,19 @@ function CCTVOverlay({ cameraName, streamPath, resolution = '1080p 30fps' }) {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setTimeString(now.toISOString().replace('T', ' ').substring(0, 19) + ' IST');
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hourCycle: 'h23',
+      }).formatToParts(now);
+
+      const get = (type) => parts.find((p) => p.type === type)?.value || '00';
+      setTimeString(`${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')}:${get('second')} IST`);
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -45,7 +58,7 @@ function CCTVOverlay({ cameraName, streamPath, resolution = '1080p 30fps' }) {
 }
 
 // Procedural high-tech simulated CCTV canvas for cameras waiting for physical RTSP hardware
-function SimulatedFeed({ streamName, streamPath }) {
+function SimulatedFeed({ streamName: _streamName, streamPath }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -143,16 +156,23 @@ export default function Live() {
   const MEDIAMTX_HLS_PORT = import.meta.env.VITE_MEDIAMTX_HLS_PORT || '8888';
 
   const getStreamUrl = (streamPath, proto = streamingProtocol) => {
+    const clean = (streamPath || '').replace(/^\/+|\/+$/g, '');
     if (proto === 'hls') {
       if (import.meta.env.VITE_MEDIAMTX_HLS_URL) {
-        return `${import.meta.env.VITE_MEDIAMTX_HLS_URL}/${streamPath}`;
+        return `${import.meta.env.VITE_MEDIAMTX_HLS_URL}/${clean}/`;
       }
-      return `${isHttps ? 'https' : 'http'}://${MEDIAMTX_HOST}:${MEDIAMTX_HLS_PORT}/${streamPath}`;
+      if (isHttps || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+        return `/mediamtx-hls/${clean}/`;
+      }
+      return `http://${MEDIAMTX_HOST}:${MEDIAMTX_HLS_PORT}/${clean}/`;
     }
     if (import.meta.env.VITE_MEDIAMTX_WEBRTC_URL) {
-      return `${import.meta.env.VITE_MEDIAMTX_WEBRTC_URL}/${streamPath}`;
+      return `${import.meta.env.VITE_MEDIAMTX_WEBRTC_URL}/${clean}/`;
     }
-    return `${isHttps ? 'https' : 'http'}://${MEDIAMTX_HOST}:${MEDIAMTX_WEBRTC_PORT}/${streamPath}`;
+    if (isHttps || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+      return `/mediamtx-webrtc/${clean}/`;
+    }
+    return `http://${MEDIAMTX_HOST}:${MEDIAMTX_WEBRTC_PORT}/${clean}/`;
   };
 
   useEffect(() => {
@@ -161,29 +181,33 @@ export default function Live() {
   }, []);
 
   useEffect(() => {
+    let active = true;
     async function checkStatus() {
       try {
         const res = await checkMediaMtxStatus();
         if (res?.online) {
-          setServerStatus({ online: true, checking: false, details: res });
+          if (active) setServerStatus({ online: true, checking: false, details: res });
           return;
         }
       } catch {
-        // continue to direct ping
+        // continue
       }
 
       try {
-        const port = streamingProtocol === 'hls' ? MEDIAMTX_HLS_PORT : MEDIAMTX_WEBRTC_PORT;
-        await fetch(`${isHttps ? 'https' : 'http'}://${MEDIAMTX_HOST}:${port}/`, { mode: 'no-cors' });
-        setServerStatus({ online: true, checking: false });
+        const checkUrl = streamingProtocol === 'hls' ? '/mediamtx-hls/' : '/mediamtx-webrtc/';
+        const response = await fetch(checkUrl, { method: 'HEAD', cache: 'no-store' }).catch(() => null);
+        if (active) setServerStatus({ online: Boolean(response), checking: false });
       } catch {
-        setServerStatus({ online: false, checking: false });
+        if (active) setServerStatus({ online: false, checking: false });
       }
     }
     checkStatus();
     const interval = setInterval(checkStatus, 5000);
-    return () => clearInterval(interval);
-  }, [MEDIAMTX_HOST, MEDIAMTX_WEBRTC_PORT, MEDIAMTX_HLS_PORT, isHttps, streamingProtocol]);
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, [streamingProtocol]);
 
   useEffect(() => {
     if (!authenticated) return;

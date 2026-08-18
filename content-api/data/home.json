@@ -21,10 +21,22 @@
     "image": null
   },
   "stats": [
-    { "value": "500+", "label": "Lives Transformed" },
-    { "value": "15+", "label": "Years of Excellence" },
-    { "value": "50+", "label": "Expert Staff" },
-    { "value": "98%", "label": "Recovery Rate" }
+    {
+      "value": "500+",
+      "label": "Lives Transformed"
+    },
+    {
+      "value": "15+",
+      "label": "Years of Excellence"
+    },
+    {
+      "value": "50+",
+      "label": "Expert Staff"
+    },
+    {
+      "value": "98%",
+      "label": "Recovery Rate"
+    }
   ],
   "services_section": {
     "subtitle": "What We Offer",

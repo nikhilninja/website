@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchPageContent, fetchCollection } from '../lib/api';
+import { fetchPageContent } from '../lib/api';
 import './About.css';
 
 const defaultTeam = [

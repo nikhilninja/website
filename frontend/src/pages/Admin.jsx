@@ -165,7 +165,7 @@ export default function Admin() {
 /* ══════════════════════════════════════════════════════════════
    Dashboard
    ══════════════════════════════════════════════════════════════ */
-function DashboardSection({ showToast }) {
+function DashboardSection({ showToast: _showToast }) {
   const [counts, setCounts] = useState({});
 
   useEffect(() => {
@@ -607,6 +607,7 @@ function CollectionEditor({ name, fields, showToast }) {
 
   useEffect(() => {
     loadItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   const loadItems = async () => {
@@ -799,7 +800,7 @@ function CollectionEditor({ name, fields, showToast }) {
 /* ══════════════════════════════════════════════════════════════
    Contact Submissions Viewer
    ══════════════════════════════════════════════════════════════ */
-function ContactSubmissions({ showToast }) {
+function ContactSubmissions({ showToast: _showToast }) {
   const [submissions, setSubmissions] = useState([]);
 
   useEffect(() => {

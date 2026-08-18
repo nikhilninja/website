@@ -38,5 +38,13 @@
     "category": "indoor",
     "is_active": true,
     "resolution": "1080p 30fps"
+  },
+  {
+    "id": 6,
+    "name": "Camera 06 - Class / Activity",
+    "stream_path": "camera_6",
+    "category": "indoor",
+    "is_active": true,
+    "resolution": "1080p 30fps"
   }
 ]

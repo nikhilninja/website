@@ -25,43 +25,43 @@ paths:
   camera_01:
     source: "rtsp://admin:L24AD39B@192.168.31.32:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_2:
     source: "rtsp://admin:L2D529C5@192.168.31.210:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_3:
     source: "rtsp://admin:L2C2BCF9@192.168.31.109:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_4:
     source: "rtsp://admin:L24930DC@192.168.31.157:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_5:
     source: "rtsp://admin:L2F6D37F@192.168.31.80:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_6:
     source: "rtsp://admin:L2864ACA@192.168.31.204:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   camera_7:
     source: "rtsp://admin:L21B9885@192.168.31.221:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: no
+    sourceOnDemand: yes
     record: no
 
   # Fallback for dynamic stream paths

@@ -1,68 +1,68 @@
 # MediaMTX Configuration for Sarani Rehab CCTV Streaming
-# Place this file in your MediaMTX directory and run mediamtx.exe
+# Universal H.264 WebRTC compatibility with LAN ICE candidate routing
 
 logLevel: info
 logDestinations: [stdout]
 
-# RTSP Server Settings (CCTV camera RTSP pull/push)
+# RTSP Server Settings
 rtsp: yes
 rtspAddress: :8554
 
-# WebRTC / WHEP Server Settings (Used by React Frontend iframe / player)
+# WebRTC / WHEP Server Settings
 webrtc: yes
 webrtcAddress: :8889
 webrtcAllowOrigins: ["*"]
+webrtcAdditionalHosts: ["192.168.31.184"]
+webrtcLocalUDPAddress: :8189
 
-# HLS Server Settings (Fallback streaming)
+# HLS Server Settings
 hls: yes
 hlsAddress: :8888
 hlsAllowOrigins: ["*"]
 
-# Path Configurations for 5 CCTV Cameras
+# Path Configurations for 7 CCTV Cameras
 paths:
   camera_01:
-    source: "rtsp://admin:L24AD39B@192.168.31.33:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L24AD39B@192.168.31.32:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_2:
-    source: "rtsp://admin:L2D529C5@192.168.31.211:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L2D529C5@192.168.31.210:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_3:
-    source: "rtsp://admin:L2C2BCF9@192.168.31.109:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L2C2BCF9@192.168.31.109:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_4:
-    source: "rtsp://admin:L24930DC@192.168.31.158:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L24930DC@192.168.31.157:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_5:
-    source: "rtsp://admin:L2F6D37F@192.168.31.81:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L2F6D37F@192.168.31.80:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_6:
-    source: "rtsp://admin:L2864ACA@192.168.31.204:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L2864ACA@192.168.31.204:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   camera_7:
-    source: "rtsp://admin:L21B9885@192.168.31.223:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif"
+    source: "rtsp://admin:L21B9885@192.168.31.221:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
-    sourceOnDemand: yes
+    sourceOnDemand: no
     record: no
 
   # Fallback for dynamic stream paths
   all_others:
-
-

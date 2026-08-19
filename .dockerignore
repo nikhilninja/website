@@ -1,0 +1,9 @@
+.git
+node_modules
+dist
+mediamtx.exe
+cloudflared.exe
+auto.crt
+auto.key
+.env
+.DS_Store

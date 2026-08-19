@@ -13,7 +13,11 @@
     "tunnel:login": "node scripts/tunnel.js --login",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:api": "cd content-api && npm run dev",
-    "build:frontend": "cd frontend && npm run build"
+    "build:frontend": "cd frontend && npm run build",
+    "docker:up": "docker compose up --build -d",
+    "docker:tunnel": "docker compose --profile tunnel up --build -d",
+    "docker:down": "docker compose --profile tunnel down",
+    "docker:logs": "docker compose logs -f"
   },
   "keywords": [
     "sarani",

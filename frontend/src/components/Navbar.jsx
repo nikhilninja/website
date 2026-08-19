@@ -33,8 +33,8 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="main-nav">
       <div className="navbar__container container">
-        <Link to="/" className="navbar__logo" aria-label="Sarani Home" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <img src="/logo.png" alt="Sarani Logo" className="navbar__logo-image" style={{ height: '50px', width: 'auto', borderRadius: '50%' }} />
+        <Link to="/" className="navbar__logo" aria-label="Sarani Home">
+          <img src="/logo.png" alt="Sarani Logo" className="navbar__logo-image" />
           <div className="navbar__logo-text">
             <span className="navbar__brand">SARANI</span>
             <span className="navbar__tagline">Rehabilitation & Wellness</span>

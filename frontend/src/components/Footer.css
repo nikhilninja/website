@@ -27,6 +27,17 @@
 }
 
 /* Brand */
+.footer__logo-image {
+  height: 80px;
+  width: 80px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  background: #081814;
+}
+
 .footer__logo {
   font-family: var(--font-heading);
   font-size: 2rem;

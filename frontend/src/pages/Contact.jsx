@@ -61,7 +61,13 @@ export default function Contact() {
                   <div className="contact__card-icon">📍</div>
                   <div>
                     <h4>Visit Us</h4>
-                    <p>Sarani Rehabilitation Centre</p>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Sarani+Rehabilitation+and+Wellness+Centre"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Sarani Rehabilitation Centre
+                    </a>
                   </div>
                 </div>
 

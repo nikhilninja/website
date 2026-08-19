@@ -11,9 +11,9 @@ export default function Footer() {
         <div className="footer__grid">
           {/* Brand */}
           <div className="footer__brand">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '1.25rem' }}>
-              <img src="/logo.png" alt="Sarani Logo" className="footer__logo-image" style={{ height: '60px', width: 'auto', borderRadius: '50%' }} />
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '1.25rem' }}>
+              <img src="/logo.png" alt="Sarani Logo" className="footer__logo-image" />
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '4px' }}>
                 <h3 className="footer__logo" style={{ margin: 0, lineHeight: 1 }}>SARANI</h3>
                 <p className="footer__logo-sub" style={{ margin: 0, marginTop: '6px' }}>Rehabilitation & Wellness</p>
               </div>
@@ -79,7 +79,14 @@ export default function Footer() {
               </li>
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Sarani Rehabilitation Centre</span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Sarani+Rehabilitation+and+Wellness+Centre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open Sarani Rehabilitation and Wellness Centre in Google Maps"
+                >
+                  Sarani Rehabilitation Centre
+                </a>
               </li>
             </ul>
           </div>

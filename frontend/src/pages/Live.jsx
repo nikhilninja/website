@@ -163,18 +163,12 @@ export default function Live() {
       if (import.meta.env.VITE_MEDIAMTX_HLS_URL) {
         return `${import.meta.env.VITE_MEDIAMTX_HLS_URL}/${clean}/`;
       }
-      if (isHttps || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
-        return `/mediamtx-hls/${clean}/`;
-      }
-      return `http://${MEDIAMTX_HOST}:${MEDIAMTX_HLS_PORT}/${clean}/`;
+      return `/mediamtx-hls/${clean}/`;
     }
     if (import.meta.env.VITE_MEDIAMTX_WEBRTC_URL) {
       return `${import.meta.env.VITE_MEDIAMTX_WEBRTC_URL}/${clean}/`;
     }
-    if (isHttps || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
-      return `/mediamtx-webrtc/${clean}/`;
-    }
-    return `http://${MEDIAMTX_HOST}:${MEDIAMTX_WEBRTC_PORT}/${clean}/`;
+    return `/mediamtx-webrtc/${clean}/`;
   };
 
   useEffect(() => {

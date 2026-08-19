@@ -1,0 +1,76 @@
+services:
+  # ─────────────────────────────────────────────────────────────
+  # 1. MediaMTX (RTSP / WebRTC / HLS Live Video Relay)
+  # Ingests CCTV RTSP streams from the local network and translates
+  # them to ultra-low latency WebRTC / HLS streams for browsers.
+  # ─────────────────────────────────────────────────────────────
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: sarani-mediamtx
+    restart: unless-stopped
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+    ports:
+      - "8554:8554"       # RTSP Ingest / Egress
+      - "8888:8888"       # HLS Streaming
+      - "8889:8889"       # WebRTC (WHEP / HTTP API)
+      - "8189:8189/udp"   # WebRTC UDP Candidates
+
+  # ─────────────────────────────────────────────────────────────
+  # 2. Sarani Content API (CMS, Data Store & Forms)
+  # Provides REST endpoints for editable website content,
+  # testimonials, streams, and contact inquiry submissions.
+  # ─────────────────────────────────────────────────────────────
+  content-api:
+    build:
+      context: ./content-api
+      dockerfile: Dockerfile
+    container_name: sarani-content-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-sarani2025}
+      - MEDIAMTX_HOST=mediamtx
+      - MEDIAMTX_WEBRTC_PORT=8889
+    volumes:
+      - ./content-api/data:/app/data
+      - ./content-api/uploads:/app/uploads
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mediamtx
+
+  # ─────────────────────────────────────────────────────────────
+  # 3. Sarani Frontend Web App (React + Nginx Reverse Proxy)
+  # Serves the responsive website and acts as the unified reverse
+  # proxy for the API and MediaMTX WebRTC camera endpoints.
+  # ─────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sarani-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"           # Standard HTTP website port
+      - "5173:80"         # Alternate/Dev mapped port
+    depends_on:
+      - content-api
+      - mediamtx
+
+  # ─────────────────────────────────────────────────────────────
+  # 4. Cloudflare Tunnel (Global Internet Remote Access)
+  # Runs alongside the application in Docker.
+  # When CLOUDFLARE_TUNNEL_TOKEN is set in .env, starts automatically
+  # with: docker compose --profile tunnel up -d
+  # ─────────────────────────────────────────────────────────────
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: sarani-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    profiles:
+      - tunnel
+    depends_on:
+      - frontend

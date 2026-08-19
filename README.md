@@ -140,7 +140,42 @@ npm run tunnel
 
 ---
 
-## 5. 24/7 Production Setup (PM2)
+## 5. Docker Deployment (Run on Any Computer on the Wi-Fi Network)
+
+To run the entire system (Frontend + Content API + MediaMTX) on **any computer/laptop/server** connected to the same Wi-Fi router as the IP cameras:
+
+### 1. Requirements:
+- Install **Docker Desktop** (Windows/Mac) or **Docker Engine + Docker Compose** (Linux/Ubuntu/Raspberry Pi).
+
+### 2. Start all containers:
+```bash
+# Windows: Double click docker-start.bat, or run:
+npm run docker:up
+
+# Linux / Mac:
+chmod +x docker-start.sh && ./docker-start.sh
+```
+
+### 3. Access on any Phone, Laptop, or Tablet in the Wi-Fi:
+Find the host computer's Local IP address (`ipconfig` on Windows or `ip a` on Linux):
+- **Website & CCTV Monitoring**: `http://<HOST_IP>` or `http://<HOST_IP>:5173`
+- **Admin Panel**: `http://<HOST_IP>/admin` (Password: `sarani2025`)
+- **Live CCTV Gate**: `http://<HOST_IP>/live` (Password: `sarani2025`)
+
+### 4. Useful Docker Commands:
+```bash
+# View live logs
+npm run docker:logs
+# or: docker compose logs -f
+
+# Stop containers
+npm run docker:down
+# or: docker compose down
+```
+
+---
+
+## 6. 24/7 Production Setup (PM2 - Non-Docker Alternative)
 
 To keep all services running in the background automatically:
 

@@ -151,12 +151,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero__scroll-indicator">
+        <a href="#welcome-section" className="hero__scroll-indicator" aria-label="Scroll to explore">
           <div className="hero__scroll-mouse">
             <div className="hero__scroll-dot"></div>
           </div>
           <span>Scroll to explore</span>
-        </div>
+        </a>
       </section>
 
       {/* ── Welcome / About Preview ───────────── */}

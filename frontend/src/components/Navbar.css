@@ -34,15 +34,27 @@
   z-index: 1001;
 }
 
-.navbar__logo-icon {
-  width: 48px;
-  height: 48px;
+.navbar__logo-image {
+  height: 74px;
+  width: 74px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(212, 175, 55, 0.45);
+  transition: all var(--transition-base);
+  background: #081814;
 }
 
-.navbar__logo-icon svg {
-  width: 100%;
-  height: 100%;
+.navbar--scrolled .navbar__logo-image {
+  height: 64px;
+  width: 64px;
+}
+
+.navbar__logo:hover .navbar__logo-image {
+  transform: scale(1.05);
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.35);
 }
 
 .navbar__logo-text {
@@ -52,7 +64,7 @@
 
 .navbar__brand {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: 700;
   color: var(--color-text-heading);
   letter-spacing: 3px;
@@ -61,10 +73,10 @@
 
 .navbar__tagline {
   font-family: var(--font-accent);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--color-accent);
   letter-spacing: 1px;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Nav Links */
@@ -161,6 +173,19 @@
 
 /* Mobile */
 @media (max-width: 1024px) {
+  .navbar__logo-image {
+    height: 58px;
+    width: 58px;
+  }
+
+  .navbar__brand {
+    font-size: 1.35rem;
+  }
+
+  .navbar__tagline {
+    font-size: 0.75rem;
+  }
+
   .navbar__hamburger {
     display: flex;
   }

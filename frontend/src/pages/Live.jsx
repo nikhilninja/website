@@ -149,8 +149,14 @@ export default function Live() {
   const [serverStatus, setServerStatus] = useState({ online: false, checking: true });
   const [activeTab, setActiveTab] = useState('all');
   const [gridCols, setGridCols] = useState(3);
-  const [simulatedPreview, setSimulatedPreview] = useState(false);
-  const [streamingProtocol, setStreamingProtocol] = useState('webrtc'); // 'webrtc' | 'hls'
+  const [streamingProtocol, setStreamingProtocol] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1' || host.startsWith('192.168.') || host.startsWith('10.') || host.startsWith('172.');
+      return isLocal ? 'webrtc' : 'hls';
+    }
+    return 'hls';
+  }); // 'webrtc' for LAN, 'hls' for Cloudflare Tunnel / Remote
 
   const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:';
   const MEDIAMTX_HOST = import.meta.env.VITE_MEDIAMTX_HOST || (typeof window !== 'undefined' ? window.location.hostname : 'localhost');

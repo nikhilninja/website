@@ -154,7 +154,7 @@ if (fs.existsSync(frontendDir)) {
 const tunnelToken = env.CLOUDFLARE_TUNNEL_TOKEN;
 if (tunnelToken && fs.existsSync(cloudflaredExe)) {
   log('Cloudflare', 'Starting Cloudflare Secure Tunnel for sarani.uk...', '36');
-  const tunnel = spawn(cloudflaredExe, ['tunnel', '--no-autoupdate', 'run', '--token', tunnelToken], {
+  const tunnel = spawn(cloudflaredExe, ['tunnel', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', tunnelToken], {
     cwd: ROOT_DIR,
     stdio: ['ignore', 'pipe', 'pipe'],
     shell: false,

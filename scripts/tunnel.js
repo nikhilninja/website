@@ -90,7 +90,7 @@ if (isLogin) {
   console.log(`Tunnel Token: ${token.substring(0, 15)}...`);
   console.log('Connecting to Cloudflare Edge Network...\n');
 
-  const proc = spawn(cloudflaredExe, ['tunnel', '--no-autoupdate', 'run', '--token', token], {
+  const proc = spawn(cloudflaredExe, ['tunnel', '--no-autoupdate', '--protocol', 'http2', 'run', '--token', token], {
     cwd: ROOT_DIR,
     stdio: 'inherit'
   });

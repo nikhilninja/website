@@ -1,28 +1,46 @@
-# Cloudflare Tunnel Configuration for Sarani Rehabilitation & CCTV Streaming
+# Cloudflare Tunnel Configuration for sarani.uk & CCTV Streaming
 # 
-# Step 1: Run 'cloudflared tunnel login'
-# Step 2: Run 'cloudflared tunnel create sarani-website'
-# Step 3: Replace <YOUR-TUNNEL-ID> below with the generated UUID
-# Step 4: Run 'npm run tunnel' or 'start-tunnel.bat'
+# Method A (Dashboard Token - Recommended):
+#   1. Go to https://one.dash.cloudflare.com -> Networks -> Tunnels
+#   2. Create tunnel named 'sarani-tunnel', copy the Token, and paste it into .env as CLOUDFLARE_TUNNEL_TOKEN
+#   3. Set Public Hostnames in dashboard:
+#      - sarani.uk      -> HTTP localhost:5173
+#      - www.sarani.uk  -> HTTP localhost:5173
+#      - api.sarani.uk  -> HTTP localhost:3001
+#      - cctv.sarani.uk -> HTTP localhost:8889
+#
+# Method B (CLI Config File):
+#   1. Run: .\cloudflared.exe tunnel login
+#   2. Run: .\cloudflared.exe tunnel create sarani-tunnel
+#   3. Replace <YOUR-TUNNEL-ID> below with your generated Tunnel UUID
+#   4. Run DNS route commands:
+#      .\cloudflared.exe tunnel route dns sarani-tunnel sarani.uk
+#      .\cloudflared.exe tunnel route dns sarani-tunnel www.sarani.uk
+#      .\cloudflared.exe tunnel route dns sarani-tunnel api.sarani.uk
+#      .\cloudflared.exe tunnel route dns sarani-tunnel cctv.sarani.uk
+#   5. Run: npm run tunnel
 
 tunnel: <YOUR-TUNNEL-ID>
 credentials-file: C:\Users\subha\.cloudflared\<YOUR-TUNNEL-ID>.json
 
 ingress:
   # 1. Main Website Frontend (Vite React)
-  - hostname: www.saranirehab.com
+  - hostname: sarani.uk
+    service: http://localhost:5173
+
+  - hostname: www.sarani.uk
     service: http://localhost:5173
 
   # 2. Sarani Content API & CMS Backend
-  - hostname: api.saranirehab.com
+  - hostname: api.sarani.uk
     service: http://localhost:3001
 
-  # 3. MediaMTX WebRTC Stream Server (Live Feed)
-  - hostname: cctv.saranirehab.com
+  # 3. MediaMTX WebRTC Stream Server (Live CCTV Feed)
+  - hostname: cctv.sarani.uk
     service: http://localhost:8889
 
   # 4. MediaMTX HLS Stream Server (Mobile Fallback)
-  - hostname: hls.saranirehab.com
+  - hostname: hls.sarani.uk
     service: http://localhost:8888
 
   # Catch-all 404 rule (required by Cloudflare)

@@ -11,6 +11,8 @@
     "tunnel": "node scripts/tunnel.js",
     "tunnel:quick": "node scripts/tunnel.js --quick",
     "tunnel:login": "node scripts/tunnel.js --login",
+    "tunnel:create": "node scripts/tunnel.js --create sarani-tunnel",
+    "tunnel:route": "node scripts/tunnel.js --route sarani-tunnel",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:api": "cd content-api && npm run dev",
     "build:frontend": "cd frontend && npm run build",

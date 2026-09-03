@@ -149,6 +149,7 @@ export default function Live() {
   const [serverStatus, setServerStatus] = useState({ online: false, checking: true });
   const [activeTab, setActiveTab] = useState('all');
   const [gridCols, setGridCols] = useState(3);
+  const [simulatedPreview, setSimulatedPreview] = useState(false);
   const [streamingProtocol, setStreamingProtocol] = useState(() => {
     if (typeof window !== 'undefined') {
       const host = window.location.hostname;
@@ -157,11 +158,6 @@ export default function Live() {
     }
     return 'hls';
   }); // 'webrtc' for LAN, 'hls' for Cloudflare Tunnel / Remote
-
-  const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:';
-  const MEDIAMTX_HOST = import.meta.env.VITE_MEDIAMTX_HOST || (typeof window !== 'undefined' ? window.location.hostname : 'localhost');
-  const MEDIAMTX_WEBRTC_PORT = import.meta.env.VITE_MEDIAMTX_WEBRTC_PORT || '8889';
-  const MEDIAMTX_HLS_PORT = import.meta.env.VITE_MEDIAMTX_HLS_PORT || '8888';
 
   const getStreamUrl = (streamPath, proto = streamingProtocol) => {
     const clean = (streamPath || '').replace(/^\/+|\/+$/g, '');

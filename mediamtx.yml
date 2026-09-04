@@ -41,13 +41,13 @@ paths:
     record: no
 
   camera_4:
-    source: "rtsp://admin:L24930DC@192.168.31.158:554/cam/realmonitor?channel=1&subtype=1"
+    source: "rtsp://admin:L24930DC@192.168.31.157:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
     sourceOnDemand: yes
     record: no
 
   camera_5:
-    source: "rtsp://admin:L2F6D37F@192.168.31.81:554/cam/realmonitor?channel=1&subtype=1"
+    source: "rtsp://admin:L2F6D37F@192.168.31.80:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
     sourceOnDemand: yes
     record: no
@@ -59,7 +59,7 @@ paths:
     record: no
 
   camera_7:
-    source: "rtsp://admin:L21B9885@192.168.31.223:554/cam/realmonitor?channel=1&subtype=1"
+    source: "rtsp://admin:L21B9885@192.168.31.221:554/cam/realmonitor?channel=1&subtype=1"
     rtspTransport: tcp
     sourceOnDemand: yes
     record: no

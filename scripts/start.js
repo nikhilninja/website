@@ -123,14 +123,20 @@ if (fs.existsSync(contentApiDir)) {
 
 // 3. Launch Frontend (Vite)
 const frontendDir = path.join(ROOT_DIR, 'frontend');
+const viteBin = path.join(frontendDir, 'node_modules', 'vite', 'bin', 'vite.js');
 if (fs.existsSync(frontendDir)) {
   log('Frontend', 'Starting React Frontend (Vite) on port 5173...', '32');
-  const npmCmd = isWindows ? 'npm.cmd' : 'npm';
-  const fe = spawn(npmCmd, ['run', 'dev'], {
-    cwd: frontendDir,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    shell: true,
-  });
+  const fe = fs.existsSync(viteBin)
+    ? spawn(isWindows ? 'node.exe' : 'node', [viteBin], {
+        cwd: frontendDir,
+        stdio: ['ignore', 'pipe', 'pipe'],
+        shell: false,
+      })
+    : spawn(isWindows ? 'npm.cmd' : 'npm', ['run', 'dev'], {
+        cwd: frontendDir,
+        stdio: ['ignore', 'pipe', 'pipe'],
+        shell: isWindows,
+      });
 
   fe.stdout.on('data', data => {
     const lines = data.toString().trim().split('\n');

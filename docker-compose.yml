@@ -9,7 +9,7 @@ services:
     container_name: sarani-mediamtx
     restart: unless-stopped
     environment:
-      - MTX_WEBRTCADDITIONALHOSTS=${WEBRTC_ADDITIONAL_HOSTS:-192.168.31.211}
+      - MTX_WEBRTCADDITIONALHOSTS=${WEBRTC_ADDITIONAL_HOSTS:-192.168.31.211,192.168.31.184}
     volumes:
       - ./mediamtx.yml:/mediamtx.yml:ro
     ports:

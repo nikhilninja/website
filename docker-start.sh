@@ -25,6 +25,21 @@ fi
 # Ensure storage directories exist
 mkdir -p content-api/data content-api/uploads
 
+# Auto-detect local IP address on LAN (e.g., 192.168.31.184 or 192.168.31.211)
+LAN_IP=$(hostname -I 2>/dev/null | awk '{print $1}')
+if [ -n "$LAN_IP" ]; then
+    echo "[INFO] Detected Host LAN IP: $LAN_IP"
+    export WEBRTC_ADDITIONAL_HOSTS="$LAN_IP"
+    # Keep .env in sync with the current machine IP
+    if grep -q "^WEBRTC_ADDITIONAL_HOSTS=" .env 2>/dev/null; then
+        sed -i "s/^WEBRTC_ADDITIONAL_HOSTS=.*/WEBRTC_ADDITIONAL_HOSTS=$LAN_IP/" .env
+    else
+        echo "WEBRTC_ADDITIONAL_HOSTS=$LAN_IP" >> .env
+    fi
+else
+    LAN_IP="localhost"
+fi
+
 echo "Building and launching containers..."
 docker compose up --build -d
 
@@ -32,11 +47,6 @@ echo ""
 echo "========================================================"
 echo "  SARANI SERVICES RUNNING SUCCESSFULLY!"
 echo "========================================================"
-
-# Auto-detect local IP address on LAN
-LAN_IP=$(hostname -I 2>/dev/null | awk '{print $1}')
-[ -z "$LAN_IP" ] && LAN_IP="localhost"
-
 echo ""
 echo "✦ On this machine (Local):"
 echo "  - Website:         http://localhost (or :5173)"

@@ -8,6 +8,8 @@ services:
     image: bluenviron/mediamtx:latest
     container_name: sarani-mediamtx
     restart: unless-stopped
+    environment:
+      - MTX_WEBRTCADDITIONALHOSTS=${WEBRTC_ADDITIONAL_HOSTS:-192.168.31.211}
     volumes:
       - ./mediamtx.yml:/mediamtx.yml:ro
     ports:
@@ -50,6 +52,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL:-}
     container_name: sarani-frontend
     restart: unless-stopped
     ports:
@@ -62,8 +66,8 @@ services:
   # ─────────────────────────────────────────────────────────────
   # 4. Cloudflare Tunnel (Global Internet Remote Access)
   # Runs alongside the application in Docker.
-  # When CLOUDFLARE_TUNNEL_TOKEN is set in .env, starts automatically
-  # with: docker compose --profile tunnel up -d
+  # Automatically starts with 'docker compose up' when COMPOSE_PROFILES=tunnel
+  # is set in .env with CLOUDFLARE_TUNNEL_TOKEN.
   # ─────────────────────────────────────────────────────────────
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -72,5 +76,9 @@ services:
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
     profiles:
       - tunnel
+    extra_hosts:
+      - "localhost:host-gateway"
+      - "host.docker.internal:host-gateway"
     depends_on:
       - frontend
+

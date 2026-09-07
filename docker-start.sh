@@ -40,6 +40,18 @@ else
     LAN_IP="localhost"
 fi
 
+# Ensure camera ARP mappings exist (prevents Wi-Fi router AP multicast/ARP drops on 2.4GHz)
+IFACE=$(ip route get 192.168.31.1 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="dev") print $(i+1)}')
+if [ -n "$IFACE" ]; then
+    sudo -n ip neigh replace 192.168.31.32 lladdr 24:14:07:4b:07:38 dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.32 lladdr 24:14:07:4b:07:38 dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.210 lladdr 24:14:07:21:82:0f dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.210 lladdr 24:14:07:21:82:0f dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.109 lladdr 24:14:07:1c:bc:01 dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.109 lladdr 24:14:07:1c:bc:01 dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.157 lladdr 1c:4d:89:56:9f:16 dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.157 lladdr 1c:4d:89:56:9f:16 dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.80 lladdr a8:31:62:bb:0b:4b dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.80 lladdr a8:31:62:bb:0b:4b dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.204 lladdr f4:b1:c2:b6:a2:d7 dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.204 lladdr f4:b1:c2:b6:a2:d7 dev "$IFACE" 2>/dev/null || true
+    sudo -n ip neigh replace 192.168.31.221 lladdr 1c:4d:89:56:5f:8c dev "$IFACE" 2>/dev/null || ip neigh replace 192.168.31.221 lladdr 1c:4d:89:56:5f:8c dev "$IFACE" 2>/dev/null || true
+fi
+
 echo "Building and launching containers..."
 docker compose up --build -d
 

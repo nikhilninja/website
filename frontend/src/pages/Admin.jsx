@@ -54,7 +54,7 @@ export default function Admin() {
       sessionStorage.setItem('sarani_admin_auth', 'true');
       setLoginError('');
     } else {
-      setLoginError('Invalid password');
+      setLoginError(result.message || 'Invalid password');
     }
   };
 

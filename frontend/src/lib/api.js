@@ -150,8 +150,17 @@ export async function adminLogin(password) {
   try {
     const response = await api.post('/auth/login', { password });
     return response.data;
-  } catch {
-    return { success: false, message: 'Invalid password' };
+  } catch (error) {
+    if (error.response) {
+      return {
+        success: false,
+        message: error.response.data?.message || 'Invalid password',
+      };
+    }
+    return {
+      success: false,
+      message: 'Cannot connect to backend server (port 3001). Please ensure the API is running.',
+    };
   }
 }
 

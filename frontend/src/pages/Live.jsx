@@ -278,9 +278,6 @@ export default function Live() {
                   <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                     Unlock CCTV Monitoring Feed
                   </button>
-                  <p className="live__pass-hint">
-                    Default access password: <code>sarani2025</code>
-                  </p>
                 </form>
               </div>
             </div>

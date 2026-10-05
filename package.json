@@ -8,6 +8,7 @@
     "start": "node scripts/start.js",
     "dev": "node scripts/start.js",
     "mediamtx": "node scripts/run-mediamtx.js",
+    "verify-audio": "node scripts/verify-cameras-audio.js",
     "tunnel": "node scripts/tunnel.js",
     "tunnel:quick": "node scripts/tunnel.js --quick",
     "tunnel:login": "node scripts/tunnel.js --login",

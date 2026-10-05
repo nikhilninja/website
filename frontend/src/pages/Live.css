@@ -207,21 +207,15 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
-  cursor: pointer;
-  transition: all var(--transition-base);
+  cursor: default;
+  transition: border-color var(--transition-fast);
   background: var(--color-bg-card);
   position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .live__stream-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.15);
-  transform: translateY(-2px);
-}
-
-.live__stream-card--selected {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  border-color: rgba(212, 175, 55, 0.4);
 }
 
 .live__stream-video {
@@ -336,31 +330,23 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.live__stream-hover-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  display: flex;
+.live__hud-audio {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-  z-index: 3;
+  gap: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  letter-spacing: 0.5px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
 }
 
-.live__stream-card:hover .live__stream-hover-overlay {
-  opacity: 1;
-}
-
-.live__stream-hover-overlay span {
-  background: rgba(10, 31, 26, 0.9);
-  color: var(--color-accent);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border: 1px solid var(--color-accent);
+.live__audio-muted-icon {
+  font-size: 0.72rem;
 }
 
 .live__stream-info {
@@ -380,79 +366,6 @@
   font-size: 0.75rem;
   color: var(--color-text-muted);
   font-family: monospace;
-}
-
-.live__expand-icon {
-  font-size: 1.1rem;
-  color: var(--color-text-muted);
-  transition: color var(--transition-fast);
-}
-
-.live__stream-card:hover .live__expand-icon {
-  color: var(--color-accent);
-}
-
-/* ── Enlarged Focus View ───────────────────── */
-.live__enlarged {
-  margin-bottom: var(--space-3xl);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  animation: fadeInUp 0.3s ease;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15);
-}
-
-.live__enlarged-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-md) var(--space-xl);
-  background: rgba(212, 175, 55, 0.06);
-  border-bottom: 1px solid var(--color-border-accent);
-}
-
-.live__enlarged-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.live__enlarged-title h3 {
-  font-size: 1.15rem;
-}
-
-.live__enlarged-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.live__close-btn {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-size: 0.82rem;
-  transition: all var(--transition-fast);
-}
-
-.live__close-btn:hover {
-  border-color: #ff6b6b;
-  color: #ff6b6b;
-}
-
-.live__enlarged-video {
-  aspect-ratio: 16/9;
-  position: relative;
-  background: #040807;
-  overflow: hidden;
-  max-height: 70vh;
-}
-
-.live__enlarged-video .live__iframe {
-  pointer-events: auto;
 }
 
 /* ── Footer ───────────────────────────────── */

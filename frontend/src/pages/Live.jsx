@@ -49,6 +49,9 @@ function CCTVOverlay({ cameraName, streamPath, resolution = '1080p 30fps' }) {
         <div className="live__hud-rec">
           <span className="live__rec-dot"></span> REC
         </div>
+        <div className="live__hud-audio" title="Audio disabled for patient confidentiality and Ministry compliance">
+          <span className="live__audio-muted-icon">🔇</span> VIDEO ONLY
+        </div>
         <div className="live__hud-time">{timeString}</div>
       </div>
       <div className="live__hud-bottom">
@@ -145,7 +148,6 @@ export default function Live() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [streams, setStreams] = useState(fallbackStreams);
-  const [selectedStream, setSelectedStream] = useState(null);
   const [serverStatus, setServerStatus] = useState({ online: false, checking: true });
   const [activeTab, setActiveTab] = useState('all');
   const [gridCols, setGridCols] = useState(3);
@@ -237,7 +239,6 @@ export default function Live() {
   const handleLogout = () => {
     sessionStorage.removeItem('sarani_live_auth');
     setAuthenticated(false);
-    setSelectedStream(null);
   };
 
   const filteredStreams = streams.filter(s => {
@@ -379,63 +380,15 @@ export default function Live() {
             </div>
           </div>
 
-          {/* Enlarged Focus View */}
-          {selectedStream && (
-            <div className="live__enlarged glass-card">
-              <div className="live__enlarged-header">
-                <div className="live__enlarged-title">
-                  <span className="live__dot"></span>
-                  <h3>{selectedStream.name}</h3>
-                  <span className="live__stream-path">Stream: /{selectedStream.stream_path} ({streamingProtocol.toUpperCase()})</span>
-                </div>
-                <div className="live__enlarged-actions">
-                  <a
-                    href={getStreamUrl(selectedStream.stream_path)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn btn-outline btn-sm"
-                  >
-                    Open Standalone Player ↗
-                  </a>
-                  <button onClick={() => setSelectedStream(null)} className="live__close-btn">
-                    ✕ Close View
-                  </button>
-                </div>
-              </div>
-              <div className="live__enlarged-video">
-                <CCTVOverlay
-                  cameraName={selectedStream.name}
-                  streamPath={selectedStream.stream_path}
-                  resolution={selectedStream.resolution}
-                />
-                {simulatedPreview ? (
-                  <SimulatedFeed
-                    streamName={selectedStream.name}
-                    streamPath={selectedStream.stream_path}
-                  />
-                ) : (
-                  <iframe
-                    src={getStreamUrl(selectedStream.stream_path)}
-                    title={selectedStream.name}
-                    allow="autoplay; fullscreen"
-                    className="live__iframe"
-                  />
-                )}
-              </div>
-            </div>
-          )}
-
           {/* Camera Feeds Grid */}
           <div className={`live__grid live__grid--${gridCols}cols`}>
             {filteredStreams.map(stream => {
-              const isSelected = selectedStream?.id === stream.id;
               const streamUrl = getStreamUrl(stream.stream_path);
 
               return (
                 <div
                   key={stream.id}
-                  className={`live__stream-card ${isSelected ? 'live__stream-card--selected' : ''}`}
-                  onClick={() => setSelectedStream(isSelected ? null : stream)}
+                  className="live__stream-card"
                 >
                   <div className="live__stream-video">
                     <CCTVOverlay
@@ -456,16 +409,12 @@ export default function Live() {
                         className="live__iframe"
                       />
                     )}
-                    <div className="live__stream-hover-overlay">
-                      <span>🔍 Click to Focus / Enlarge</span>
-                    </div>
                   </div>
                   <div className="live__stream-info">
                     <div>
                       <h4>{stream.name}</h4>
                       <span className="live__stream-path">rtsp://...:{stream.stream_path}</span>
                     </div>
-                    <span className="live__expand-icon">⤢</span>
                   </div>
                 </div>
               );
